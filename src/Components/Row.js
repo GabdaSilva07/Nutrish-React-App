@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import "./Row.css";
 
+const base_url = "https://spoonacular.com/recipeImages/";
+const image_size = "312x231";
+const image_type ="jpg"
 function Row({ title, fetchUrl, isLargeRow }) {
   const [cuisines, setCuisines] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      console.log(request);
       setCuisines(request.data.results);
       return request;
     }
     fetchData();
   }, [fetchUrl]);
 
-  console.table(cuisines);
 
   return (
     <div className="row">
@@ -25,7 +26,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
           <img
             key={dish.id}
             className={`row_poster`}
-            src={dish.image}
+            src={`${base_url}${dish.id}-${image_size}.${image_type}`}
             alt={dish.title}
           />
         ))}
