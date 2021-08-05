@@ -1,5 +1,6 @@
 //const API_KEY = "d45e92126b234747a5f2f8326ee9f70c"
-const API_KEY = "574f824d4c0d269d2d879c8fda041700"
+//const API_KEY = "574f824d4c0d269d2d879c8fda041700"
+
 
 
 const request = {
@@ -10,21 +11,24 @@ const request = {
   // fetchNutrientsByProtein:`findByNutrients?apiKey=${API_KEY}&maxProtein=`,
 
   //Fetch By Cuisine
-  //fetchItalianCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=italian`,
-  //fetchAmericanCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=american`,
-  //fetchGreekCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=greek`,
-  //fetchEuropeanCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=european`,
-  //fetchFrenchCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=french`,
-  //fetchSouthernCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=southern`,
-  //fetchSpanishCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=spanish`,
-  //fetchJapaneseCuisine:`complexSearch?apiKey=${API_KEY}&cuisine=japanese`,
+  fetchRandomRecipe: `recipes/random?number=1`,
+  fetchItalianCuisine: `recipes/search?query=Italian`,
+  fetchAmericanCuisine: `recipes/search?query=American`,
+  fetchGreekCuisine: `recipes/search?query=Greek`,
+  fetchEuropeanCuisine: `recipes/search?query=European`,
+  fetchFrenchCuisine: `recipes/search?query=French`,
+  fetchSouthernCuisine: `recipes/search?query=Southern`,
+  fetchSpanishCuisine: `recipes/search?query=Spanish`,
+  fetchJapaneseCuisine: `recipes/search?query=Japanese`,
 
   //Films
-  fetchTrending: `trending/all/day?api_key=${API_KEY}`,
-  fetchTopRated: `movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
-  fetchLatest: `movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
-  fetchUpcoming: `movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
-  fetchPopular: `movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+  // fetchTrending: `trending/all/day?api_key=${API_KEY}`,
+  // fetchTopRated: `movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
+  // fetchLatest: `movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
+  // fetchUpcoming: `movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
+  // fetchPopular: `movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+
+  //Rapid API
 };
 
 export default request

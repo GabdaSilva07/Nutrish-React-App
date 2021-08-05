@@ -2,33 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import "./Row.css";
 
-const base_url = "https://image.tmdb.org/t/p/w500";
-
+const base_url = "https://spoonacular.com/recipeImages/";
+const image_size = "312x231";
+const image_type ="jpg"
 function Row({ title, fetchUrl, isLargeRow }) {
   const [cuisines, setCuisines] = useState([]);
-  //const [loading, setloading] = useState(true)
 
   useEffect(() => {
-    // fetch(axios.get(fetchUrl))
-    // .then((response) => response.json())
-    // .then((data) => {
-    //     setCuisines(data);
-    //     setloading(false);
-
-    // });
-
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      console.log(request);
       setCuisines(request.data.results);
       return request;
     }
     fetchData();
   }, [fetchUrl]);
 
-  //if (loading) return <h1>LOADING...</h1>
-
-  console.table(cuisines);
 
   return (
     <div className="row">
@@ -37,10 +25,8 @@ function Row({ title, fetchUrl, isLargeRow }) {
         {cuisines.map((dish) => (
           <img
             key={dish.id}
-            className={`row_poster ${isLargeRow && "row_posterLarge"}`}
-            src={`${base_url}${
-              isLargeRow ? dish.poster_path : dish.backdrop_path
-            }`}
+            className={`row_poster`}
+            src={`${base_url}${dish.id}-${image_size}.${image_type}`}
             alt={dish.title}
           />
         ))}
