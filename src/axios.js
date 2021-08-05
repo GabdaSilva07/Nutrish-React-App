@@ -1,8 +1,7 @@
-    import axios from 'axios'
+import axios from "axios";
 
-    const instance = axios.create({
-        //baseURL: "https://api.spoonacular.com/recipes/"
-        baseURL: "https://api.themoviedb.org/3/"
-    })
+const instance = axios.create({
+  baseURL: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/",
+});
 
-    export default instance;
+export default instance;
