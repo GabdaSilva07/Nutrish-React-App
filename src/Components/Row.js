@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios";
-import "./Row.css";
+import "./CSS/Row.css";
 
 const base_url = "https://spoonacular.com/recipeImages/";
 const image_size = "312x231";
