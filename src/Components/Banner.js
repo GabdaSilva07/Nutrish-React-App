@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import request from "../requests/SpoonRequest";
-import "./Banner.css";
+import "./CSS/Banner.css";
 
 function Banner() {
   const [banner, setBanner] = useState([]);
