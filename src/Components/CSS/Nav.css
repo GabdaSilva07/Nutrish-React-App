@@ -15,6 +15,9 @@
 
 .Nav_white {
   background-color: #fdfdfd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .logo {
@@ -23,10 +26,26 @@
   object-fit: contain;
   height: 40px;
 }
+.separator1 {
+  left: 20px;
+  height: 40px;
+}
+.separator2 {
+  right: 20px;
+  height: 40px;
+}
 
 .user_logo {
   position: fixed;
   right: 20px;
   object-fit: contain;
   height: 40px;
+}
+
+.navLinks {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
 }
