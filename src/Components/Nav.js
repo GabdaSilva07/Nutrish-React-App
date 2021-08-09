@@ -2,15 +2,41 @@ import React, { useEffect, useState } from "react";
 import logo from "../logo.png";
 import userLogo from "../User.png";
 import "./CSS/Nav.css";
-import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./LoginPage";
+import { Link } from "react-router-dom";
+
+
 
 function Nav() {
+
+  const navStyle = {
+    color: 'black',
+    textDecoration: 'none'
+  }
   return (
     <div className={`Nav`}>
-      <img className="logo" src={logo} alt="Nutrish Logo" />
+      <Link to="/">
+        <img className="logo" src={logo} alt="Nutrish Logo" />
+      </Link>
 
-      <img className="user_logo" src={userLogo} alt="User logo" />
+      <div className="separator1" />
+      <ul className="navLinks">
+        <Link style={navStyle} to="/">
+          <li>Home</li>
+        </Link>
+        <Link style={navStyle} to="/">
+          <li>Recipes</li>
+        </Link>
+        <Link style={navStyle} to="/">
+          <li>Takeaway</li>
+        </Link>
+        <Link style={navStyle} to="/">
+          <li>About</li>
+        </Link>
+      </ul>
+      <Link to="/login">
+        <img className="user_logo" src={userLogo} alt="User logo" />
+      </Link>
+      <div className="separator2" />
     </div>
   );
 }
