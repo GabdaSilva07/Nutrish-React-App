@@ -4,14 +4,14 @@ import userLogo from "../User.png";
 import "./CSS/Nav.css";
 import { Link } from "react-router-dom";
 
-
+//TODO: Add Search Bar
 
 function Nav() {
-
   const navStyle = {
-    color: 'black',
-    textDecoration: 'none'
-  }
+    color: "black",
+    textDecoration: "none",
+    display: "flex",
+  };
   return (
     <div className={`Nav`}>
       <Link to="/">
