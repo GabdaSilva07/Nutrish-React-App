@@ -4,7 +4,7 @@
   height: 320px;
 }
 .banner_content {
-  
+  object-fit: contain;
   margin-left: 30px;
   padding-top: 60px;
   height: 190px;
@@ -22,6 +22,7 @@
   font-size: 0.9rem;
   max-width: 360px;
   height: 80px;
+
 }
 .banner_fade{
   height: 7.4rem;

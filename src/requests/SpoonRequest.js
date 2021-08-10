@@ -12,14 +12,14 @@ const request = {
 
   //Fetch By Cuisine
   fetchRandomRecipe: `recipes/random?number=1`,
-  fetchItalianCuisine: `recipes/search?query=Italian`,
-  fetchAmericanCuisine: `recipes/search?query=American`,
-  fetchGreekCuisine: `recipes/search?query=Greek`,
-  fetchEuropeanCuisine: `recipes/search?query=European`,
-  fetchFrenchCuisine: `recipes/search?query=French`,
-  fetchSouthernCuisine: `recipes/search?query=Southern`,
-  fetchSpanishCuisine: `recipes/search?query=Spanish`,
-  fetchJapaneseCuisine: `recipes/search?query=Japanese`,
+  fetchItalianCuisine: `recipes/search?query=Italian&number=20`,
+  fetchAmericanCuisine: `recipes/search?query=American&number=20`,
+  fetchGreekCuisine: `recipes/search?query=Greek&number=20`,
+  fetchEuropeanCuisine: `recipes/search?query=European&number=20`,
+  fetchFrenchCuisine: `recipes/search?query=French&number=20`,
+  fetchSouthernCuisine: `recipes/search?query=Southern&number=20`,
+  fetchSpanishCuisine: `recipes/search?query=Spanish&number=20`,
+  fetchJapaneseCuisine: `recipes/search?query=Japanese&number=20`,
 
   //Films
   // fetchTrending: `trending/all/day?api_key=${API_KEY}`,
