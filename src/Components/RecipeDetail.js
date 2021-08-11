@@ -88,8 +88,8 @@ function RecipeDetail({ match }) {
         <p className="header">Ingredients</p>
         <div>
           {ingredients.map((ingredient) => (
-            <li className="ingredients">
-              {ingredient.name}
+            <li className="ingredients" key={ingredient.id}>
+              {ingredient.originalString}
             </li>
           ))}
         </div>
