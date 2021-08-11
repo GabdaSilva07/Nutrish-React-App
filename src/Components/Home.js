@@ -14,7 +14,6 @@ function Home() {
       <Row title="French Cuisine" fetchUrl={request.fetchFrenchCuisine} />
       <Row title="Southern Cuisine" fetchUrl={request.fetchSouthernCuisine} />
       <Row title="Spanish Cuisine" fetchUrl={request.fetchSpanishCuisine} />
-      <Row title="Japanese Cuisine" fetchUrl={request.fetchJapaneseCuisine} />
     </div>
   );
 }
