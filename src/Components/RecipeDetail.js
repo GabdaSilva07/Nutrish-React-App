@@ -14,15 +14,19 @@ function RecipeDetail({ match }) {
   const [recipeInformation, setRecipeInformation] = useState({});
   const [recipeNutrition, setRecipeNutrition] = useState({});
   const [ingredients, setIngredients] = useState([]);
+  const [bad, setBad] = useState([]);
+  const [good, setGood] = useState([]);
+
+  const [instructions, setInstructions] = useState([]);
 
   useEffect(() => {
-    async function fetchRecipeNutrition() {
+    async function fetchRecipeInfo() {
       const request = await axios.get(recipeInformationURL);
       console.log(request.data);
       setRecipeInformation(request.data);
       return request;
     }
-    fetchRecipeNutrition();
+    fetchRecipeInfo();
   }, [recipeInformationURL]);
 
   useEffect(() => {
@@ -30,20 +34,58 @@ function RecipeDetail({ match }) {
       const request = await axios.get(recipeNutritionURL);
       console.log(request.data);
       setRecipeNutrition(request.data);
+      setBad(request.data.bad);
+      console.log(request.data.bad);
       return request;
     }
     fetchRecipeNutrition();
   }, [recipeNutritionURL]);
 
   useEffect(() => {
-    async function fetchRecipeNutrition() {
+    async function fetchBad() {
+      const request = await axios.get(recipeNutritionURL);
+      setBad(request.data.bad);
+      console.log(request.data.bad);
+      return request;
+    }
+    fetchBad();
+  }, [recipeNutritionURL]);
+
+  useEffect(() => {
+    async function fetchGood() {
+      const request = await axios.get(recipeNutritionURL);
+      setGood(request.data.good);
+      console.log(request.data.good);
+      return request;
+    }
+    fetchGood();
+  }, [recipeNutritionURL]);
+
+  useEffect(() => {
+    async function fetchRecipeIngredients() {
       const request = await axios.get(recipeInformationURL);
       setIngredients(request.data.extendedIngredients);
       console.log(request.data.extendedIngredients);
       return request;
     }
-    fetchRecipeNutrition();
+    fetchRecipeIngredients();
   }, [recipeInformationURL]);
+
+  // useEffect(() => {
+  //   async function fetchRecipeInstructions() {
+  //     const request = await axios.get(recipeNutritionURL);
+  //     setInstructions(request.data.analyzedInstructions);
+  //     return request;
+  //   }
+  //   fetchRecipeInstructions();
+  // }, [recipeNutritionURL]);
+
+  //  for (let i = 0; i < instructions.length; i++) {
+  //    for (const key in instructions) {
+  //       console.log(instructions[i])
+  //    }
+
+  //  }
 
   return (
     <div className="info">
@@ -69,6 +111,7 @@ function RecipeDetail({ match }) {
 
       <div className="instructions">
         <p className="header">Instructions</p>
+
         <p>{recipeInformation.instructions}</p>
       </div>
 
@@ -77,10 +120,30 @@ function RecipeDetail({ match }) {
           <ListGroup.Item className="header">
             Nutritional Information
           </ListGroup.Item>
-          <ListGroup.Item>{`Calories: ${recipeNutrition.calories}`}</ListGroup.Item>
+          <div>
+            {good.map((nutrients) => (
+              <div>
+                <ul key={nutrients.title}>
+                  {`${nutrients.title}: ${nutrients.amount}`}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            {bad.map((nutrients) => (
+              <div>
+                <ul key={nutrients.title}>
+                  {`${nutrients.title}: ${nutrients.amount}`}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* <ListGroup.Item>{`Calories: ${recipeNutrition.calories}`}</ListGroup.Item>
           <ListGroup.Item>{`Carbs: ${recipeNutrition.carbs}`}</ListGroup.Item>
           <ListGroup.Item>{`Fats: ${recipeNutrition.fat}`}</ListGroup.Item>
-          <ListGroup.Item>{`Protein: ${recipeNutrition.protein}`}</ListGroup.Item>
+          <ListGroup.Item>{`Protein: ${recipeNutrition.protein}`}</ListGroup.Item> */}
         </ListGroup>
       </div>
 
