@@ -71,21 +71,6 @@ function RecipeDetail({ match }) {
     fetchRecipeIngredients();
   }, [recipeInformationURL]);
 
-  // useEffect(() => {
-  //   async function fetchRecipeInstructions() {
-  //     const request = await axios.get(recipeNutritionURL);
-  //     setInstructions(request.data.analyzedInstructions);
-  //     return request;
-  //   }
-  //   fetchRecipeInstructions();
-  // }, [recipeNutritionURL]);
-
-  //  for (let i = 0; i < instructions.length; i++) {
-  //    for (const key in instructions) {
-  //       console.log(instructions[i])
-  //    }
-
-  //  }
 
   return (
     <div className="info">
@@ -121,16 +106,6 @@ function RecipeDetail({ match }) {
             Nutritional Information
           </ListGroup.Item>
           <div>
-            {good.map((nutrients) => (
-              <div>
-                <ul key={nutrients.title}>
-                  {`${nutrients.title}: ${nutrients.amount}`}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div>
             {bad.map((nutrients) => (
               <div>
                 <ul key={nutrients.title}>
@@ -139,11 +114,15 @@ function RecipeDetail({ match }) {
               </div>
             ))}
           </div>
-
-          {/* <ListGroup.Item>{`Calories: ${recipeNutrition.calories}`}</ListGroup.Item>
-          <ListGroup.Item>{`Carbs: ${recipeNutrition.carbs}`}</ListGroup.Item>
-          <ListGroup.Item>{`Fats: ${recipeNutrition.fat}`}</ListGroup.Item>
-          <ListGroup.Item>{`Protein: ${recipeNutrition.protein}`}</ListGroup.Item> */}
+          <div>
+            {good.map((nutrients) => (
+              <div>
+                <ul key={nutrients.title}>
+                  {`${nutrients.title}: ${nutrients.amount}`}
+                </ul>
+              </div>
+            ))}
+          </div>
         </ListGroup>
       </div>
 
