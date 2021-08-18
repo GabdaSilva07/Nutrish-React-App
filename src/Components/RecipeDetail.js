@@ -71,7 +71,6 @@ function RecipeDetail({ match }) {
     fetchRecipeIngredients();
   }, [recipeInformationURL]);
 
-
   return (
     <div className="info">
       <h1 className="title">{recipeInformation.title}</h1>
@@ -100,40 +99,42 @@ function RecipeDetail({ match }) {
         <p>{recipeInformation.instructions}</p>
       </div>
 
-      <div>
-        <ListGroup className="nutritionalInfo">
-          <ListGroup.Item className="header">
-            Nutritional Information
-          </ListGroup.Item>
-          <div>
-            {bad.map((nutrients) => (
-              <div>
-                <ul key={nutrients.title}>
-                  {`${nutrients.title}: ${nutrients.amount}`}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div>
-            {good.map((nutrients) => (
-              <div>
-                <ul key={nutrients.title}>
-                  {`${nutrients.title}: ${nutrients.amount}`}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </ListGroup>
-      </div>
+      <div className="infoRow">
+        <div className="nutritionalInfo">
+          <ListGroup>
+            <ListGroup.Item className="header">
+              Nutritional Information
+            </ListGroup.Item>
+            <div>
+              {bad.map((nutrients) => (
+                <div>
+                  <li key={nutrients.title}>
+                    {`${nutrients.title}: ${nutrients.amount}`}
+                  </li>
+                </div>
+              ))}
+            </div>
+            <div>
+              {good.map((nutrients) => (
+                <div>
+                  <li key={nutrients.title}>
+                    {`${nutrients.title}: ${nutrients.amount}`}
+                  </li>
+                </div>
+              ))}
+            </div>
+          </ListGroup>
+        </div>
 
-      <div>
-        <p className="header">Ingredients</p>
-        <div>
-          {ingredients.map((ingredient) => (
-            <li className="ingredients" key={ingredient.id}>
-              {ingredient.originalString}
-            </li>
-          ))}
+        <div className="ingredientsInfo">
+          <p className="header">Ingredients</p>
+          <div>
+            {ingredients.map((ingredient) => (
+              <li className="ingredients" key={ingredient.id}>
+                {ingredient.originalString}
+              </li>
+            ))}
+          </div>
         </div>
       </div>
     </div>
