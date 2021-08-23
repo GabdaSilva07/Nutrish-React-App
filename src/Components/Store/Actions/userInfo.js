@@ -1,12 +1,6 @@
 import axios from "axios";
-import {
-  GET_USERS,
-  UPDATE_USER,
-  CREATE_USER,
-  GET_ERROR,
-  CREATE_MESSAGE,
-} from "./Type";
-import { createMessage } from "../Actions/messages";
+import { GET_USERS, UPDATE_USER, CREATE_USER, GET_ERROR } from "./Type";
+import { createMessage, returnError } from "./messages";
 
 //! GET USERS
 
@@ -19,7 +13,9 @@ export const getUsers = () => (dispatch) => {
         payload: response.data,
       })
     )
-    .catch((err) => console.log(err));
+    .catch((err) =>
+      dispatch(returnError(err.response.data, err.response.status))
+    );
 };
 
 //! UPDATE USER
@@ -40,7 +36,7 @@ export const updateUser = (id) => (dispatch) => {
 
 export const createUser = (user) => (dispatch) => {
   axios
-    .post("http://127.0.0.1:8000/api/user/register/", JSON.stringify(user), {
+    .post("http://127.0.0.1:8000/api/", JSON.stringify(user), {
       headers: { "Content-Type": "application/json" },
     })
     .then((response) => {
@@ -50,14 +46,7 @@ export const createUser = (user) => (dispatch) => {
         payload: response.data,
       });
     })
-    .catch((err) => {
-      const errors = {
-        msg: err.response.data,
-        status: err.response.status,
-      };
-      dispatch({
-        type: GET_ERROR,
-        payload: errors,
-      });
-    });
+    .catch((err) =>
+      dispatch(returnError(err.response.data, err.response.status))
+    );
 };

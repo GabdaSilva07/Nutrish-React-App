@@ -21,15 +21,13 @@ class UserPage extends Component {
         <div>
           {this.props.users.map((user) => (
             <div key={user.id}>
-              <h3>{user.name}</h3>
-              <p>{user.surname}</p>
-              <p>{user.email}</p>
+              <p>{user.author}</p>
               <p>{user.diet}</p>
               <p>{user.intolerance}</p>
               <p>{user.favourite1}</p>
               <p>{user.favourite2}</p>
               <p>{user.favourite3}</p>
-              <br/>
+              <br />
             </div>
           ))}
         </div>
