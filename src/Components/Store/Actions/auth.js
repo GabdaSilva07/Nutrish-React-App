@@ -26,7 +26,7 @@ export const loadUsers = () => (dispatch, getState) => {
       });
     })
     .catch((err) => {
-      dispatch(returnError(err.response.data, err.response.status));
+      // dispatch(returnError(err.response.data, err.response.status));
       dispatch({ type: AUTH_ERROR });
     });
 };
@@ -43,6 +43,7 @@ export const login = (loginInfo) => (dispatch) => {
       });
     })
     .catch((err) => {
+      dispatch(returnError(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAILED });
     });
 };
