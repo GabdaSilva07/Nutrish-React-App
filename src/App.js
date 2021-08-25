@@ -14,6 +14,8 @@ import UsersPage from "./Components/UserPage";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import Alerts from "./Components/Layout/Alerts";
+import PrivateRoute from "./Components/Common/PrivateRoute"
+import { loadUsers } from "./Components/Store/Actions/auth";
 
 //! Alert options
 
@@ -21,14 +23,13 @@ const AlertOptions = {
   timeout: 5000,
   position: "top center",
 };
-function App() {
-  const [token, setToken] = useState("");
+class App extends React.Component {
 
-  const userLogin = (token) => {
-    setToken(token);
-    console.log(token);
-  };
+  componentDidMount(){
+    store.dispatch(loadUsers())
+  }
 
+  render(){
   return (
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...AlertOptions}>
@@ -38,10 +39,8 @@ function App() {
             <Alerts/>
             <Separator />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login">
-                <Login userLogin={userLogin} />
-              </Route>
+              <PrivateRoute exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
               <Route path="/registration" component={Registration} />
               <Route path="/recipe/:id" component={RecipeDetail} />
               <Route path="/userspage" component={UsersPage} />
@@ -50,7 +49,7 @@ function App() {
         </Router>
       </AlertProvider>
     </Provider>
-  );
+  );}
 }
 
 export default App;
