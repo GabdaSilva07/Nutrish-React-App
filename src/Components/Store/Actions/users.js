@@ -81,7 +81,7 @@ export const createUser = (user) => (dispatch) => {
       });
     })
     .catch((err) => {
-      dispatch(returnError(err.response.data, err.response.status));
+      // dispatch(returnError(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAILED });
     });
 };
