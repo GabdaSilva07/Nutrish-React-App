@@ -30,13 +30,13 @@ export const loadUsers = () => (dispatch, getState) => {
       dispatch({ type: AUTH_ERROR });
     });
 };
-//! LOGIN USERS
 
+
+//! LOGIN USERS
 export const login = (loginInfo) => (dispatch) => {
   axiosInstance
     .post("api/token/", JSON.stringify(loginInfo))
     .then((response) => {
-      dispatch(createMessage({ createUser: "Welcome to Nutrish" })); //continue
       dispatch({
         type: LOGIN_SUCCESS,
         payload: response.data,
@@ -47,23 +47,3 @@ export const login = (loginInfo) => (dispatch) => {
       dispatch({ type: LOGIN_FAILED });
     });
 };
-
-// export const login = (userInfo) => (dispatch) => {
-//   // const body = JSON.stringify({ email, password });
-
-//   axiosInstance.post("api/token/", JSON.stringify(userInfo)).then((response) => {
-//     dispatch({
-//       type: LOGIN_SUCCESS,
-//       payload: response.data,
-//     }).catch((err) => {
-//       const errors = {
-//         msg: err.response.data,
-//         status: err.response.status,
-//       };
-//       dispatch({
-//         type: GET_ERROR,
-//         payload: errors,
-//       });
-//     });
-//   });
-// };

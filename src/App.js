@@ -23,6 +23,7 @@ const AlertOptions = {
   timeout: 5000,
   position: "top center",
 };
+
 class App extends React.Component {
 
   componentDidMount(){
@@ -39,7 +40,8 @@ class App extends React.Component {
             <Alerts/>
             <Separator />
             <Switch>
-              <PrivateRoute exact path="/" component={Home} />
+              {}
+              <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/registration" component={Registration} />
               <Route path="/recipe/:id" component={RecipeDetail} />

@@ -11,7 +11,7 @@
   margin-bottom: 50px !important;
   transition-timing-function: ease-in;
   transition: all;
-  font-weight:450;
+  font-weight: 450;
 }
 
 .Nav_white {
@@ -49,4 +49,14 @@
   justify-content: space-around;
   align-items: center;
   list-style: none;
+}
+
+.logoutBTN {
+  background-color: black;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 8px 8px;
+  cursor: pointer;
 }
