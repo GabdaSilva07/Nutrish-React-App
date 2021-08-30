@@ -11,19 +11,10 @@ import {
 import { createMessage } from "../Actions/messages";
 import { useHistory } from "react-router-dom";
 import { returnError } from "../Actions/messages";
+import { axiosInstance } from "../axiosInstance";
 
 const baseURL = "http://127.0.0.1:8000/";
 
-export const axiosInstance = axios.create({
-  baseURL: baseURL,
-  headers: {
-    Authorization: localStorage.getItem("access_token")
-      ? "JWT " + localStorage.getItem("access_token")
-      : null,
-    "Content-Type": "application/json",
-    accept: "application/json",
-  },
-});
 
 
 
@@ -40,18 +31,21 @@ export const axiosInstance = axios.create({
 //! GET USERS
 
 export const getUsers = () => (dispatch) => {
+  axiosInstance.defaults.headers["Authorization"] = localStorage.getItem(
+    "access_token"
+  )
+    ? "JWT " + localStorage.getItem("access_token")
+    : null;
+
   axiosInstance
     .get("api/")
     .then((response) => {
-      console.log(response.data);
-    })
-    .then((response) =>
-      dispatch({
+      console.log(response);
+        dispatch({
         type: GET_USERS,
         payload: response.data,
       })
-    )
-    .catch((err) => console.log(err));
+    }).catch((err) => console.log(err));
 };
 
 //! UPDATE USER
@@ -78,6 +72,7 @@ export const createUser = (user) => (dispatch) => {
       dispatch({
         type: CREATE_USER,
         payload: response.data,
+        
       });
     })
     .catch((err) => {

@@ -78,8 +78,8 @@ export class Registration extends Component {
     this.props.createUser(user);
 
     console.log(user);
-    if (user.user_name || user.email || user.password !== "") {
-      this.props.history.push("/userspage");
+    if ((user.user_name || user.email || user.password !== "")) {
+      this.props.history.push("/inforegistration");
     }
 
     this.setState({
@@ -153,8 +153,8 @@ export class Registration extends Component {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to={"/login"} href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link to="/login" variant="body2">
+                  {"Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>

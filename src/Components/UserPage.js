@@ -16,7 +16,7 @@ class UserPage extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div>
         <h2>User Page</h2>
         <div>
           {this.props.users.map((user) => (
@@ -31,7 +31,7 @@ class UserPage extends Component {
             </div>
           ))}
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

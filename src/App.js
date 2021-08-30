@@ -16,6 +16,10 @@ import AlertTemplate from "react-alert-template-basic";
 import Alerts from "./Components/Layout/Alerts";
 import PrivateRoute from "./Components/Common/PrivateRoute"
 import { loadUsers } from "./Components/Store/Actions/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { authActionCreator } from "./Components/Store/Actions/index";
+import UserInfoRegistration from "./Components/UserInfoRegistration"
 
 //! Alert options
 
@@ -24,34 +28,35 @@ const AlertOptions = {
   position: "top center",
 };
 
-class App extends React.Component {
+function App () {
 
-  componentDidMount(){
-    store.dispatch(loadUsers())
-  }
+  const auth = useSelector((state) => state.authReducer)
+  const dispatch = useDispatch()
+  const {login, logout, loadUsers} = bindActionCreators(authActionCreator, dispatch)
 
-  render(){
+  // console.log(auth)
+  // console.log(login);
+
   return (
-    <Provider store={store}>
-      <AlertProvider template={AlertTemplate} {...AlertOptions}>
-        <Router>
-          <div className="App">
-            <Nav />
-            <Alerts/>
-            <Separator />
-            <Switch>
-              {}
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-              <Route path="/registration" component={Registration} />
-              <Route path="/recipe/:id" component={RecipeDetail} />
-              <Route path="/userspage" component={UsersPage} />
-            </Switch>
-          </div>
-        </Router>
-      </AlertProvider>
-    </Provider>
-  );}
+    <AlertProvider template={AlertTemplate} {...AlertOptions}>
+      <Router>
+        <div className="App">
+          <Nav />
+          <Alerts />
+          <Separator />
+          <Switch>
+            {}
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
+            <Route path="/recipe/:id" component={RecipeDetail} />
+            <Route path="/userspage" component={UsersPage} />
+            <Route path="/inforegistration" component={UserInfoRegistration}/>
+          </Switch>
+        </div>
+      </Router>
+    </AlertProvider>
+  );
 }
 
 export default App;

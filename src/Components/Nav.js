@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 // import { Button } from "bootstrap";
-
+import axiosInstance from "./Store/Actions/users";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { authActionCreator } from "./Store/Actions/index";
 
 //TODO: Add Search Bar
-
-
 
 const navStyle = {
   color: "black",
@@ -18,16 +20,19 @@ const navStyle = {
   display: "flex",
 };
 
-class Nav extends React.Component {
-  static propTypes = {
-    auth: PropTypes.object.isRequired,
-  };
+function Nav(){
 
-  render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const auth = useSelector((state) => state.authReducer);
+    const dispatch = useDispatch();
+    const { login, logout, loadUsers } = bindActionCreators(
+      authActionCreator,
+      dispatch
+    );
 
     const authLinks = (
-      <button className="logoutBTN">logout</button>
+      <Link to="/logout">
+        <button onClick={logout} className="logoutBTN">logout</button>
+      </Link>
     );
 
     const guestLinks = (
@@ -35,7 +40,6 @@ class Nav extends React.Component {
         <img className="user_logo" src={userLogo} alt="User logo" />
       </Link>
     );
-
     return (
       <div className={`Nav`}>
         <Link to="/">
@@ -57,13 +61,12 @@ class Nav extends React.Component {
             <li>About</li>
           </Link>
         </ul>
-        {isAuthenticated ? authLinks : guestLinks}
+        {auth.isAuthenticated ? authLinks : guestLinks}
         <div className="separator2" />
       </div>
     );
-  }
+  
 }
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-export default connect(mapStateToProps)(Nav);
+
+
+export default Nav;
