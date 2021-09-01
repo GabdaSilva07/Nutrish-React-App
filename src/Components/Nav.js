@@ -57,8 +57,8 @@ function Nav(){
           <Link style={navStyle} to="/">
             <li>Takeaway</li>
           </Link>
-          <Link style={navStyle} to="/">
-            <li>About</li>
+          <Link style={navStyle} to="/userspage">
+            <li>UserPage</li>
           </Link>
         </ul>
         {auth.isAuthenticated ? authLinks : guestLinks}

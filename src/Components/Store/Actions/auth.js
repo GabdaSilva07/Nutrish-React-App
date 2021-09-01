@@ -9,10 +9,14 @@ import {
   AUTH_ERROR,
   LOGOUT_SUCCESS,
 } from "./Type";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import {} from "./Type";
+
 
 //!CHECK TOKEN & LOAD USER
+
+
 export const loadUsers = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
@@ -32,8 +36,7 @@ export const loadUsers = () => (dispatch, getState) => {
         type: USER_LOADED,
         payload: response.data,
       });
-    })
-    .catch((err) => {
+    }).catch((err) => {
       // dispatch(returnError(err.response.data, err.response.status));
       dispatch({ type: AUTH_ERROR });
     });
@@ -52,9 +55,7 @@ export const login = (loginInfo) => (dispatch) => {
       localStorage.setItem("refresh_token", response.data.refresh);
       axiosInstance.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
-      // console.log(axiosInstance.localStorage("access_token"));
-    })
-    .catch((err) => {
+    }).catch((err) => {
       dispatch(returnError(err.response.data, err.response.status));
       dispatch({ type: LOGIN_FAILED });
     });
@@ -73,6 +74,7 @@ export const logout = () => (dispatch) => {
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
       axiosInstance.defaults.headers["Authorization"] = null;
+      
     });
 };
 

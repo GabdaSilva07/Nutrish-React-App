@@ -10,7 +10,7 @@ function Banner() {
     async function fetchData() {
       const requests = await axios.get(request.fetchRandomRecipe);
       setBanner(requests.data.recipes[0]);
-      console.log(requests);
+      // console.log(requests);
       return requests;
     }
 
@@ -21,7 +21,8 @@ function Banner() {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
 
-  console.log(banner);
+  // console.log(banner);
+  
   return (
     <header
       className="banner"

@@ -7,6 +7,7 @@ import {
   CREATE_MESSAGE,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
+  LOGOUT_USER
 } from "./Type";
 import { createMessage } from "../Actions/messages";
 import { useHistory } from "react-router-dom";
@@ -31,21 +32,17 @@ const baseURL = "http://127.0.0.1:8000/";
 //! GET USERS
 
 export const getUsers = () => (dispatch) => {
-  axiosInstance.defaults.headers["Authorization"] = localStorage.getItem(
-    "access_token"
-  )
-    ? "JWT " + localStorage.getItem("access_token")
-    : null;
 
   axiosInstance
-    .get("api/")
+    .get("api/user/userinfo/")
     .then((response) => {
       console.log(response);
-        dispatch({
+      dispatch({
         type: GET_USERS,
         payload: response.data,
-      })
-    }).catch((err) => console.log(err));
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 //! UPDATE USER
@@ -80,3 +77,11 @@ export const createUser = (user) => (dispatch) => {
       dispatch({ type: LOGIN_FAILED });
     });
 };
+
+
+export const logoutUser = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT_USER,
+    payload: null
+  })
+}

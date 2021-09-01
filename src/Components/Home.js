@@ -7,13 +7,13 @@ function Home() {
   return (
     <div>
       <Banner />
-      <Row title="Italian Cuisine" fetchUrl={request.fetchItalianCuisine} />
-      <Row title="American Cuisine" fetchUrl={request.fetchAmericanCuisine} />
-      <Row title="Greek Cuisine" fetchUrl={request.fetchGreekCuisine} />
-      <Row title="European Cuisine" fetchUrl={request.fetchEuropeanCuisine} />
-      <Row title="French Cuisine" fetchUrl={request.fetchFrenchCuisine} />
-      <Row title="Southern Cuisine" fetchUrl={request.fetchSouthernCuisine} />
-      <Row title="Spanish Cuisine" fetchUrl={request.fetchSpanishCuisine} />
+      <Row title="Italian" fetchUrl={request.fetchItalianCuisine} />
+      <Row title="American" fetchUrl={request.fetchAmericanCuisine} />
+      <Row title="Greek" fetchUrl={request.fetchGreekCuisine} />
+      <Row title="European" fetchUrl={request.fetchEuropeanCuisine} />
+      <Row title="French" fetchUrl={request.fetchFrenchCuisine} />
+      <Row title="Southern" fetchUrl={request.fetchSouthernCuisine} />
+      <Row title="Spanish" fetchUrl={request.fetchSpanishCuisine} />
     </div>
   );
 }

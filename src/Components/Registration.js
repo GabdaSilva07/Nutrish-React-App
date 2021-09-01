@@ -52,12 +52,19 @@ function Copyright() {
   );
 }
 
+//TODO Add Fields for user registration
+
 export class Registration extends Component {
   state = {
     // first_name:"",
     user_name: "",
     email: "",
     password: "",
+    diet: "",
+    intolerance: "",
+    favourite1: "",
+    favourite2: "",
+    favourite3: "",
     loginURL: "/login",
   };
 
@@ -65,27 +72,46 @@ export class Registration extends Component {
     createUser: PropTypes.func.isRequired,
     loginURL: PropTypes.string,
   };
+
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   onSubmit = (e) => {
     e.preventDefault();
-    const { user_name, email, password } = this.state;
-    const user = {
-      // first_name,
+    const {
       user_name,
       email,
       password,
+      diet,
+      intolerance,
+      favourite1,
+      favourite2,
+      favourite3,
+    } = this.state;
+    const user = {
+      user_name,
+      email,
+      password,
+      diet,
+      intolerance,
+      favourite1,
+      favourite2,
+      favourite3,
     };
     this.props.createUser(user);
 
     console.log(user);
-    if ((user.user_name || user.email || user.password !== "")) {
-      this.props.history.push("/inforegistration");
+    if (user.user_name || user.email || user.password !== "") {
+      // this.props.history.push("/inforegistration");
     }
 
     this.setState({
       user_name: "",
       email: "",
       password: "",
+      diet: "",
+      intolerance: "",
+      favourite1: "",
+      favourite2: "",
+      favourite3: "",
     });
   };
 
@@ -138,6 +164,75 @@ export class Registration extends Component {
                   id="password"
                   autoComplete="current-password"
                   value={this.state.password}
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="diet"
+                  label="Diet Type"
+                  type="diet"
+                  id="diet"
+                  autoComplete="diet"
+                  value={this.state.diet}
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  name="intolerance"
+                  label="Intolerance (separate using commas)"
+                  type="intolerance"
+                  id="intolerance"
+                  autoComplete="current-password"
+                  value={this.state.intolerance}
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="favourite1"
+                  label="Favourite Cuisine 1"
+                  type="favourite1"
+                  id="favourite1"
+                  autoComplete="favourite1"
+                  value={this.state.favourite1}
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="favourite2"
+                  label="Favourite Cuisine 2"
+                  type="favourite2"
+                  id="favourite2"
+                  autoComplete="favourite2"
+                  value={this.state.favourite2}
+                  onChange={this.onChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="favourite3"
+                  label="Favourite Cuisine 3"
+                  type="favourite3"
+                  id="favourite3"
+                  autoComplete="favourite3"
+                  value={this.state.favourite3}
                   onChange={this.onChange}
                 />
               </Grid>

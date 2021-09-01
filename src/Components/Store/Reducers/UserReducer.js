@@ -1,7 +1,14 @@
-import { GET_USERS, UPDATE_USER, CREATE_USER } from "../Actions/Type.js";
+import { GET_USERS, UPDATE_USER, CREATE_USER, LOGOUT_USER } from "../Actions/Type.js";
 
 const initialState = {
-  users: [],
+  email: "",
+  user_name: "",
+  diet: "",
+  intolerance: "",
+  favourite1: "",
+  favourite2: "",
+  favourite3: "",
+  users: []
 };
 
 export default function (state = initialState, action) {
@@ -9,7 +16,13 @@ export default function (state = initialState, action) {
     case GET_USERS:
       return {
         ...state,
-        users: action.payload,
+        email: action.payload.email,
+        user_name: action.payload.user_name,
+        diet: action.payload.diet,
+        intolerance: action.payload.intolerance,
+        favourite1: action.payload.favourite1,
+        favourite2: action.payload.favourite2,
+        favourite3: action.payload.favourite3,
       };
     case UPDATE_USER:
       return {
@@ -21,6 +34,17 @@ export default function (state = initialState, action) {
         ...state,
         users: [...state.users, action.payload],
       };
+    case LOGOUT_USER:
+    return {
+      email: "",
+      user_name: "",
+      diet: "",
+      intolerance: "",
+      favourite1: "",
+      favourite2: "",
+      favourite3: "",
+      users: [],
+    };
     default:
       return state;
   }

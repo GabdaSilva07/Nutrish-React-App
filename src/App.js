@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import "./App.css";
 import Nav from "./Components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -14,12 +14,17 @@ import UsersPage from "./Components/UserPage";
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 import Alerts from "./Components/Layout/Alerts";
-import PrivateRoute from "./Components/Common/PrivateRoute"
+import PrivateRoute from "./Components/Common/PrivateRoute";
 import { loadUsers } from "./Components/Store/Actions/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import { authActionCreator } from "./Components/Store/Actions/index";
-import UserInfoRegistration from "./Components/UserInfoRegistration"
+import {
+  authActionCreator,
+  usersActionCreator,
+} from "./Components/Store/Actions/index";
+import UserInfoRegistration from "./Components/UserInfoRegistration";
+import HomeAuth from "./Components/HomeAuth";
+import { axiosInstance } from "./Components/Store/axiosInstance";
 
 //! Alert options
 
@@ -28,30 +33,51 @@ const AlertOptions = {
   position: "top center",
 };
 
-function App () {
+const clearLocalStorage = (axiosInstance) => {
+  axiosInstance.defaults.headers["Authorization"] = null;
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+};
 
-  const auth = useSelector((state) => state.authReducer)
-  const dispatch = useDispatch()
-  const {login, logout, loadUsers} = bindActionCreators(authActionCreator, dispatch)
+function App() {
+  const auth = useSelector((state) => state.authReducer);
+  const dispatch = useDispatch();
+  const { getUsers, updateUser, createUser, logoutUser } = bindActionCreators(
+    usersActionCreator,
+    dispatch
+  );
 
-  // console.log(auth)
-  // console.log(login);
+  useEffect(() => {
+    return () => {
+      if (auth.isAuthenticated !== true) {
+        logoutUser();
+      }
+    };
+  }, []);
+
+  // if (auth.isAuthenticated === false) {
+  //   clearLocalStorage(axiosInstance);
+  //   // logout()
+  // }
+
+  //TODO: Change home component after finishing production
+  const homePageNotAuth = <Route exact path="/" component={Home} />;
+  const homePageAuth = <Route exact path="/" component={HomeAuth} />;
 
   return (
     <AlertProvider template={AlertTemplate} {...AlertOptions}>
       <Router>
         <div className="App">
-          <Nav />
+          <Nav auth={auth} />
           <Alerts />
           <Separator />
           <Switch>
-            {}
-            <Route exact path="/" component={Home} />
+            {auth.isAuthenticated ? homePageAuth : homePageNotAuth}
             <Route path="/login" component={Login} />
             <Route path="/registration" component={Registration} />
             <Route path="/recipe/:id" component={RecipeDetail} />
             <Route path="/userspage" component={UsersPage} />
-            <Route path="/inforegistration" component={UserInfoRegistration}/>
+            <Route path="/inforegistration" component={UserInfoRegistration} />
           </Switch>
         </div>
       </Router>

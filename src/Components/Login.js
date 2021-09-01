@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { login } from "../Components/Store/Actions/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { authActionCreator, usersActionCreator } from "./Store/Actions/index";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -13,10 +16,10 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-const useStyles = (theme) => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -34,103 +37,103 @@ const useStyles = (theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-});
+}));
 
-class Login extends Component {
-  state = {
+function Login() {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
-  };
+  });
+  const { login, logout, loadUsers } = bindActionCreators(
+    authActionCreator,
+    dispatch
+  );
 
-  static propTypes = {
-    login: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
-  };
+  const history = useHistory()
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  const onChange = (e) =>
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
 
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
+    const { email, password } = userInfo;
     const loginInfo = { email, password };
+    login(loginInfo)
 
-    this.props.login(loginInfo);
+    history.push("/")
   };
 
-  render() {
-    if (this.props.isAuthenticated) {
-      return <Redirect to="/" />;
-    }
-    const { classes } = this.props;
-    return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}></Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={classes.form} noValidate onSubmit={this.onSubmit}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={this.state.email}
-              onChange={this.onChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={this.state.password}
-              onChange={this.onChange}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              {/* <Grid item xs>
+  // if (this.props.isAuthenticated) {
+  //   return <Redirect to="/" />;
+  // }
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}></Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={onSubmit}
+        >
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={setUserInfo.email}
+            onChange={onChange}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={setUserInfo.password}
+            onChange={onChange}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid> */}
-              <Grid item>
-                <Link to="/registration" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+            <Grid item>
+              <Link to="/registration" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
             </Grid>
-          </form>
-        </div>
-        <Box mt={8}></Box>
-      </Container>
-    );
-  }
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}></Box>
+    </Container>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
-});
-
-export default compose(
-  connect(mapStateToProps, { login }),
-  withStyles(useStyles)
-)(Login);
+export default compose(withStyles(useStyles))(Login);
