@@ -1,43 +1,29 @@
-import { Component, Fragment } from "react";
+import { Component, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getUsers, updateUser } from "../Components/Store/Actions/users";
+import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { userInfoActionCreator, usersActionCreator } from "./Store/Actions/index";
 
-class UserPage extends Component {
-  static propTypes = {
-    users: PropTypes.array.isRequired,
-    getUsers:PropTypes.func.isRequired,
-
-  };
-
-  componentDidMount() {
-    this.props.getUsers();
-  }
-
-  render() {
-    return (
-      <Fragment>
-        <h2>User Page</h2>
-        <div>
-          {this.props.users.map((user) => (
-            <div key={user.id}>
-              <p>{user.author}</p>
-              <p>{user.diet}</p>
-              <p>{user.intolerance}</p>
-              <p>{user.favourite1}</p>
-              <p>{user.favourite2}</p>
-              <p>{user.favourite3}</p>
-              <br />
-            </div>
-          ))}
+function UserPage() {
+  const user = useSelector((state) => state.UserReducer);
+  console.log(user)
+  return (
+    <div>
+      <h2>User Page</h2>
+      <div>
+        <div key={user.id}>
+          <p>{user.diet}</p>
+          <p>{user.intolerance}</p>
+          <p>{user.favourite1}</p>
+          <p>{user.favourite2}</p>
+          <p>{user.favourite3}</p>
+          <br />
         </div>
-      </Fragment>
-    );
-  }
+      </div>
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  users: state.UserReducer.users,
-});
-
-export default connect(mapStateToProps, { getUsers })(UserPage);
+export default UserPage;
