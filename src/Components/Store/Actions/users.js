@@ -69,7 +69,6 @@ export const createUser = (user) => (dispatch) => {
       dispatch({
         type: CREATE_USER,
         payload: response.data,
-        
       });
     })
     .catch((err) => {

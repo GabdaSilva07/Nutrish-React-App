@@ -25,9 +25,17 @@ import {
 import UserInfoRegistration from "./Components/UserInfoRegistration";
 import HomeAuth from "./Components/HomeAuth";
 import { axiosInstance } from "./Components/Store/axiosInstance";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#efcb37",
+    },
+  },
+});
 //! Alert options
-
 const AlertOptions = {
   timeout: 5000,
   position: "top center",
@@ -65,23 +73,28 @@ function App() {
   const homePageAuth = <Route exact path="/" component={HomeAuth} />;
 
   return (
-    <AlertProvider template={AlertTemplate} {...AlertOptions}>
-      <Router>
-        <div className="App">
-          <Nav auth={auth} />
-          <Alerts />
-          <Separator />
-          <Switch>
-            {auth.isAuthenticated ? homePageAuth : homePageNotAuth}
-            <Route path="/login" component={Login} />
-            <Route path="/registration" component={Registration} />
-            <Route path="/recipe/:id" component={RecipeDetail} />
-            <Route path="/userspage" component={UsersPage} />
-            <Route path="/inforegistration" component={UserInfoRegistration} />
-          </Switch>
-        </div>
-      </Router>
-    </AlertProvider>
+    <ThemeProvider theme={theme}>
+      <AlertProvider template={AlertTemplate} {...AlertOptions}>
+        <Router>
+          <div className="App">
+            <Nav auth={auth} />
+            <Alerts />
+            <Separator />
+            <Switch>
+              {auth.isAuthenticated ? homePageAuth : homePageNotAuth}
+              <Route path="/login" component={Login} />
+              <Route path="/registration" component={Registration} />
+              <Route path="/recipe/:id" component={RecipeDetail} />
+              <Route path="/userspage" component={UsersPage} />
+              <Route
+                path="/inforegistration"
+                component={UserInfoRegistration}
+              />
+            </Switch>
+          </div>
+        </Router>
+      </AlertProvider>
+    </ThemeProvider>
   );
 }
 

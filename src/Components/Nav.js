@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../logo.png";
+import logo from "../logo.jpg";
 import userLogo from "../User.png";
 import "./CSS/Nav.css";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ function Nav(){
     );
 
     const authLinks = (
-      <Link to="/logout">
+      <Link to="/">
         <button onClick={logout} className="logoutBTN">logout</button>
       </Link>
     );

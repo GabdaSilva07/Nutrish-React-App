@@ -51,7 +51,7 @@ function Login() {
     dispatch
   );
 
-  const history = useHistory()
+  const history = useHistory();
 
   const onChange = (e) =>
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
@@ -60,9 +60,9 @@ function Login() {
     e.preventDefault();
     const { email, password } = userInfo;
     const loginInfo = { email, password };
-    login(loginInfo)
+    login(loginInfo);
 
-    history.push("/")
+    history.push("/");
   };
 
   // if (this.props.isAuthenticated) {
@@ -77,11 +77,7 @@ function Login() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form
-          className={classes.form}
-          noValidate
-          onSubmit={onSubmit}
-        >
+        <form className={classes.form} noValidate onSubmit={onSubmit}>
           <TextField
             variant="outlined"
             margin="normal"
