@@ -83,6 +83,7 @@ function Registration() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(userInfo);
     const {
       user_name,
       email,
@@ -105,14 +106,14 @@ function Registration() {
       favourite3,
     };
 
-    console.log(user)
+    console.log(user);
     const isEmpty = Object.values(user).every((x) => x === null || x === "");
 
     if (isEmpty === true) {
       //TODO Insert Alarm
     } else {
       createUser(user);
-      history.push("/")
+      // history.push("/")
     }
   };
 
@@ -208,6 +209,7 @@ function Registration() {
                 id="free-solo-demo"
                 freeSolo
                 options={meals}
+                onChange={(event, value) => (userInfo.favourite1 = value)}
                 getOptionLabel={(option) => option}
                 renderInput={(params) => (
                   <TextField
@@ -220,8 +222,8 @@ function Registration() {
                     type="favourite1"
                     id="favourite1"
                     autoComplete="favourite1"
-                    value={userInfo.favourite1}
                     onChange={onChange}
+                    value={toString(userInfo.favourite1)}
                   />
                 )}
               />
@@ -231,6 +233,7 @@ function Registration() {
                 id="free-solo-demo"
                 freeSolo
                 options={meals}
+                onChange={(event, value) => (userInfo.favourite2 = value)}
                 getOptionLabel={(option) => option}
                 renderInput={(params) => (
                   <TextField
@@ -243,8 +246,8 @@ function Registration() {
                     type="favourite2"
                     id="favourite2"
                     autoComplete="favourite2"
-                    value={userInfo.favourite2}
                     onChange={onChange}
+                    value={toString(userInfo.favourite2)}
                   />
                 )}
               />
@@ -254,6 +257,7 @@ function Registration() {
                 id="free-solo-demo"
                 freeSolo
                 options={meals}
+                onChange={(event, value) => (userInfo.favourite3 = value)}
                 getOptionLabel={(option) => option}
                 renderInput={(params) => (
                   <TextField
@@ -266,8 +270,8 @@ function Registration() {
                     type="favourite3"
                     id="favourite3"
                     autoComplete="favourite3"
-                    value={userInfo.favourite3}
                     onChange={onChange}
+                    value={toString(userInfo.favourite3)}
                   />
                 )}
               />
