@@ -3,11 +3,9 @@ import logo from "../logo.jpg";
 import userLogo from "../User.png";
 import "./CSS/Nav.css";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+
 // import { Button } from "bootstrap";
-import axiosInstance from "./Store/Actions/users";
-import { useHistory } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { authActionCreator } from "./Store/Actions/index";
