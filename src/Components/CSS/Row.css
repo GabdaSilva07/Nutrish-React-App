@@ -13,24 +13,43 @@
   display: none;
 }
 
-.row_poster{
-    border-radius: 5px;
+.row_poster {
+  border-radius: 5px;
+  max-height: 125px;
+  object-fit: contain;
+  position: relative;
 }
-
-.row_poster:hover {
-  transform: scale(1.1);
-  transition: all 0.15s ease-in;
-  opacity: 1;
-}
-
 
 .rows_posterLinks {
   display: flex;
   padding: 3px;
-  object-fit: contain;
   transition: 400ms;
-  max-height: 100px;
-  width: 200px;
-  height: 300px;
   margin-right: 3px;
+}
+.position-relative {
+  display: flex;
+}
+.figcaption {
+  position: absolute;
+  font-size: medium;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  bottom: 0px;
+  right: 0px;
+  left:0px;
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgba(139, 137, 137, 0.5),
+    #292828d2
+  );
+}
+
+.rows_posterLinks:hover {
+  transform: scale(1.1);
+  transition: all 0.15s ease-in;
+  opacity: 1;
+  border-radius: 5px;
+  padding: 3px;
 }

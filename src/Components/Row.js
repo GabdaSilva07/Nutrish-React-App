@@ -3,6 +3,10 @@ import axios from "../axios";
 import "./CSS/Row.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container } from "react-bootstrap";
+
+//images settings
 const base_url = "https://spoonacular.com/recipeImages/";
 const image_size = "312x231";
 const image_type = "jpg";
@@ -44,8 +48,6 @@ function Row({ title, fetchUrl, diet, intolerance }) {
   }, [title]);
 
   //TODO: check to type of image in the url
-  // const type = cuisines.map((plate) => plate.imageType)
-  // console.log(type)
   console.log(cuisines);
   return (
     <div className="row">
@@ -57,12 +59,16 @@ function Row({ title, fetchUrl, diet, intolerance }) {
             to={`/recipe/${dish.id}`}
             key={dish.id}
           >
-            <img
-              key={dish.id}
-              className={`row_poster`}
-              src={`${base_url}${dish.id}-${image_size}.${image_type}`}
-              alt={dish.title}
-            />
+            <figure className="position-relative">
+              <img
+                key={dish.id}
+                className={`row_poster`}
+                src={`${base_url}${dish.id}-${image_size}.${image_type}`}
+                alt={dish.title}
+              />
+              <figcaption className="figcaption">{dish.title}</figcaption>
+            </figure>
+
           </Link>
         ))}
       </div>
