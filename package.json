@@ -12,6 +12,8 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
     "dompurify": "^2.3.0",
+    "fitness-health-calculations": "^1.0.2",
+    "jp-healthmeasurements": "^1.3.8",
     "react": "^17.0.2",
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",

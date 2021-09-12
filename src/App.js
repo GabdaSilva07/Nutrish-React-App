@@ -26,7 +26,9 @@ import UserInfoRegistration from "./Components/UserInfoRegistration";
 import HomeAuth from "./Components/HomeAuth";
 import { axiosInstance } from "./Components/Store/axiosInstance";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-
+import UserDietCalculator from "./Components/UserDietCalculator"
+import Footer from "./Components/Footer"
+import CalculatorResults from "./Components/Calculator/CalculatorResults";
 
 const theme = createMuiTheme({
   palette: {
@@ -90,10 +92,13 @@ function App() {
                 path="/inforegistration"
                 component={UserInfoRegistration}
               />
+              <Route path="/calculator" component={UserDietCalculator} />
+              <Route path="/results" component={CalculatorResults} />
             </Switch>
           </div>
         </Router>
       </AlertProvider>
+      <Footer />
     </ThemeProvider>
   );
 }

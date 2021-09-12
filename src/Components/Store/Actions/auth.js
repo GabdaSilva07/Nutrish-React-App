@@ -9,8 +9,6 @@ import {
   AUTH_ERROR,
   LOGOUT_SUCCESS,
 } from "./Type";
-import { useSelector, useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
 
 
 
