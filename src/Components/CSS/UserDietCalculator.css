@@ -1,0 +1,17 @@
+.heading {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+}
+
+.left {
+  text-align: left;
+  margin: auto;
+  right: auto;
+}
+
+.right {
+  text-align: right;
+  margin: auto;
+  left: 10;
+}

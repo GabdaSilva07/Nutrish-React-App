@@ -47,13 +47,10 @@ function Nav(){
         <div className="separator1" />
         <ul className="navLinks">
           <Link style={navStyle} to="/">
-            <li>Home</li>
-          </Link>
-          <Link style={navStyle} to="/">
             <li>Recipes</li>
           </Link>
-          <Link style={navStyle} to="/">
-            <li>Takeaway</li>
+          <Link style={navStyle} to="/calculator">
+            <li>Calculator</li>
           </Link>
           <Link style={navStyle} to="/userspage">
             <li>UserPage</li>
