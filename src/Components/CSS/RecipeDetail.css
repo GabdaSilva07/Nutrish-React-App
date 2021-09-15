@@ -5,13 +5,15 @@
   display: flex;
   object-fit: contain;
   float: left;
-  border-radius: 20px;
+  border-radius: 7px;
+  margin-right: 10px;
 }
 .content {
   display: flex;
   object-fit: contain;
   text-align: left;
   vertical-align: middle;
+  margin: 10px;
 }
 .header {
   font-size: 35px;
@@ -21,23 +23,24 @@
 
 .nutritionalInfo {
   display: flex;
-  border-radius: 20px;
   padding-left: 3px;
-  background-color: #e9f6ef;
-  width: 50%;
+  margin-right: 100px;
 }
 
-.ingredientsInfo{
+.ingredientsInfo {
   height: 100px;
-  width: 50%;
+  margin: 10px;
 }
 
+.ingredients {
+  margin-left: 15px;
+}
 
 .summaryContent {
   text-align: justify;
   pointer-events: none;
-  padding-bottom: 20px;
-  padding-left: 7px;
+  margin: 7px;
+  padding-bottom: 10px;
 }
 
 .summaryContent a {
@@ -46,14 +49,15 @@
   font-weight: normal;
 }
 
-
 .instructions {
   text-align: justify;
   padding-bottom: 20px;
 }
 
-.infoRow{
+.infoRow {
   display: flex;
   color: #000;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 50px;
 }
-

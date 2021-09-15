@@ -15,10 +15,10 @@ import {
   goals,
   approach,
   gender,
-} from "./Common/Fitness&Health";
+} from "../Common/Fitness&Health";
 import { bindActionCreators } from "redux";
 import { useDispatch, useSelector } from "react-redux";
-import { userMetricsActionCreator } from "./Store/Actions";
+import { userMetricsActionCreator } from "../Store/Actions";
 
 export const useStyles = makeStyles((theme) => ({
   paper: {

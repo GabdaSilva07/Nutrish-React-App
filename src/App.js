@@ -26,7 +26,7 @@ import UserInfoRegistration from "./Components/UserInfoRegistration";
 import HomeAuth from "./Components/HomeAuth";
 import { axiosInstance } from "./Components/Store/axiosInstance";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import UserDietCalculator from "./Components/UserDietCalculator"
+import UserDietCalculator from "./Components/Calculator/UserDietCalculator"
 import Footer from "./Components/Footer"
 import CalculatorResults from "./Components/Calculator/CalculatorResults";
 

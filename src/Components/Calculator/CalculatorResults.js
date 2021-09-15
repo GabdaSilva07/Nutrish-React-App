@@ -12,6 +12,7 @@ import { dailyMacros } from "jp-healthmeasurements";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { userMetricsActionCreator } from "../Store/Actions";
+import axiosBMI from "../../axiosBMI";
 
 const calculate = require("fitness-health-calculations");
 
@@ -51,6 +52,7 @@ export default function CalculatorResults() {
   const [userIdealWeight, setUserIdealWeight] = useState();
   const [userCaloriesNeeded, setUserCaloriesNeeded] = useState();
   const [userMacros, setUserMacros] = useState({});
+  const [userBMI, setUserBMI] = useState()
 
   const dispatch = useDispatch();
   const { getUserMacros } = bindActionCreators(
@@ -74,7 +76,22 @@ export default function CalculatorResults() {
       setUserIdealWeight(IdealWeight);
       setUserCaloriesNeeded(caloriesNeeded);
       setUserMacros(macros);
-      let userMacroInfo = { userIdealWeight, userCaloriesNeeded, userMacros };
+
+      const options = {
+        method: "GET",
+        url: "https://body-mass-index-bmi-calculator.p.rapidapi.com/metric",
+        params: {
+          weight: toString(user.weight),
+          height: toString(user.height),
+        },
+      };
+
+      let request = axiosBMI.request(options);
+
+      setUserBMI(request.bmi)
+
+
+      let userMacroInfo = { userIdealWeight, userCaloriesNeeded, userMacros, userBMI };
       getUserMacros(userMacroInfo);
     }
   }, [user]);
