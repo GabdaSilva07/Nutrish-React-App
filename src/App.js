@@ -25,12 +25,14 @@ import {
 import UserInfoRegistration from "./Components/UserInfoRegistration";
 import HomeAuth from "./Components/HomeAuth";
 import { axiosInstance } from "./Components/Store/axiosInstance";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import UserDietCalculator from "./Components/Calculator/UserDietCalculator"
 import Footer from "./Components/Footer"
 import CalculatorResults from "./Components/Calculator/CalculatorResults";
+import MealPlanPage from "./MealPlan/MealPlanPage";
+import { createTheme } from '@material-ui/core/styles'
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#efcb37",
@@ -94,6 +96,7 @@ function App() {
               />
               <Route path="/calculator" component={UserDietCalculator} />
               <Route path="/results" component={CalculatorResults} />
+              <Route path="/mealplan" component={MealPlanPage}/>
             </Switch>
           </div>
         </Router>

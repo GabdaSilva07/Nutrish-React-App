@@ -51,7 +51,7 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CalculatorForm() {
-  const user = useSelector((state) => state.userMetricsReducer);
+
   const dispatch = useDispatch();
   const { getUserMetrics } = bindActionCreators(
     userMetricsActionCreator,

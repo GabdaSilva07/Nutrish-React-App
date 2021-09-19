@@ -1,4 +1,3 @@
-import ActionButton from "antd/lib/modal/ActionButton";
 import { USER_METRICS_LOADED, USER_METRICS_FAIL, USER_MACROS } from "../Actions/Type";
 
 const initialState = {

@@ -1,0 +1,10 @@
+.image {
+  border-radius: 5px;
+  object-fit: fill;
+  position: relative;
+    display: flex;
+  align-content: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
