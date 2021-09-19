@@ -12,7 +12,10 @@ import { dailyMacros } from "jp-healthmeasurements";
 import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { userMetricsActionCreator } from "../Store/Actions";
+import axiosBMI from "../../axiosBMI";
 
+
+//TODO: Fix The Macros
 const calculate = require("fitness-health-calculations");
 
 export const useStyles = makeStyles((theme) => ({
@@ -51,6 +54,12 @@ export default function CalculatorResults() {
   const [userIdealWeight, setUserIdealWeight] = useState();
   const [userCaloriesNeeded, setUserCaloriesNeeded] = useState();
   const [userMacros, setUserMacros] = useState({});
+  const [userBMI, setUserBMI] = useState({
+    bmi: null,
+    weight: null,
+    height: null,
+    weightCategory: null,
+  });
 
   const dispatch = useDispatch();
   const { getUserMacros } = bindActionCreators(
@@ -58,10 +67,18 @@ export default function CalculatorResults() {
     dispatch
   );
 
+  function addDecimal(number) {
+    return (number / 100).toFixed(2);
+  }
+
+  //TODO: Make Async Function
   useEffect(() => {
-    if (user.loaded) {
-      let IdealWeight = calculate.idealBodyWeight(user.height, user.gender);
-      let caloriesNeeded = calculate.caloricNeeds(
+    async function loadInfo() {
+      let IdealWeight = await calculate.idealBodyWeight(
+        user.height,
+        user.gender
+      );
+      let caloriesNeeded = await calculate.caloricNeeds(
         user.gender,
         user.age,
         user.height,
@@ -74,10 +91,38 @@ export default function CalculatorResults() {
       setUserIdealWeight(IdealWeight);
       setUserCaloriesNeeded(caloriesNeeded);
       setUserMacros(macros);
-      let userMacroInfo = { userIdealWeight, userCaloriesNeeded, userMacros };
+    }
+
+    async function loadBMI() {
+      const options = {
+        method: "GET",
+        url: "https://body-mass-index-bmi-calculator.p.rapidapi.com/metric",
+        params: {
+          weight: user.weight,
+          height: addDecimal(user.height),
+        },
+      };
+
+      const request = await axiosBMI.request(options);
+      console.log(request.data);
+
+      setUserBMI(request.data);
+      return request;
+    }
+
+    if (user.loaded) {
+      loadInfo();
+      loadBMI();
+
+      let userMacroInfo = {
+        userIdealWeight,
+        userCaloriesNeeded,
+        userMacros,
+        userBMI,
+      };
       getUserMacros(userMacroInfo);
     }
-  }, [user]);
+  }, []);
 
   const userLoaded = (
     <Container component="main" maxWidth="xs">
@@ -88,7 +133,9 @@ export default function CalculatorResults() {
           </Typography>
           <br />
           <Paper className={classes.paper}>
-            <Typography className={classes.writing}>{"BMI: "}</Typography>
+            <Typography className={classes.writing}>
+              {"BMI: " + parseFloat(userBMI.bmi).toFixed(2)}
+            </Typography>
           </Paper>
           <Paper className={classes.paper}>
             <Typography className={classes.writing}>
@@ -108,6 +155,7 @@ export default function CalculatorResults() {
           </Paper>
         </Grid>
       </div>
+      <br />
     </Container>
   );
 

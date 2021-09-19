@@ -1,4 +1,3 @@
-import ActionButton from "antd/lib/modal/ActionButton";
 import { USER_METRICS_LOADED, USER_METRICS_FAIL, USER_MACROS } from "../Actions/Type";
 
 const initialState = {
@@ -40,6 +39,7 @@ export default function userMetricsReducer(state = initialState, action) {
             return {
               ...state,
               calories: Number.parseInt(action.payload.userCaloriesNeeded),
+              bmi: Number.parseInt(action.payload.userBMI),
               macros: {
                 carbs: Number.parseInt(action.payload.userMacros.cGram),
                 fat: Number.parseInt(action.payload.userMacros.fGram),

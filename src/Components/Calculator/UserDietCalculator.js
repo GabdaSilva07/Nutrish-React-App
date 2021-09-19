@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useGeolocationHook from "../hooks/useGeolocationHook";
-import axiosBMI from "../axiosBMI";
-import "./CSS/UserDietCalculator.css";
+import useGeolocationHook from "../../hooks/useGeolocationHook";
+import "../CSS/UserDietCalculator.css";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@material-ui/core/Button";
 import CalculatorForm from "./CalculatorForm";
