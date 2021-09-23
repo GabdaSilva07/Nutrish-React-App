@@ -68,7 +68,6 @@ function Row({ title, fetchUrl, diet, intolerance }) {
               />
               <figcaption className="figcaption">{dish.title}</figcaption>
             </figure>
-
           </Link>
         ))}
       </div>

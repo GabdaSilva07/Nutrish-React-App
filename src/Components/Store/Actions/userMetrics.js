@@ -1,4 +1,4 @@
-import { USER_METRICS_LOADED, USER_MACROS } from "./Type";
+import { USER_METRICS_LOADED, USER_MACROS, CLEAR_MACROS } from "./Type";
 
 
 export const getUserMetrics = (userMetrics) => (dispatch) => {
@@ -13,4 +13,8 @@ export const getUserMacros = (userMacros) => (dispatch) => {
         type: USER_MACROS,
         payload: userMacros
     })
+}
+
+export const clearUserMacros = () => (dispatch) => {
+    dispatch({ type: CLEAR_MACROS });
 }

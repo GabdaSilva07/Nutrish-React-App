@@ -21,16 +21,20 @@ import { bindActionCreators } from "redux";
 import {
   authActionCreator,
   usersActionCreator,
+  userMetricsActionCreator,
 } from "./Components/Store/Actions/index";
 import UserInfoRegistration from "./Components/UserInfoRegistration";
 import HomeAuth from "./Components/HomeAuth";
 import { axiosInstance } from "./Components/Store/axiosInstance";
 import { ThemeProvider } from "@material-ui/core";
-import UserDietCalculator from "./Components/Calculator/UserDietCalculator"
-import Footer from "./Components/Footer"
+import UserDietCalculator from "./Components/Calculator/UserDietCalculator";
+import Footer from "./Components/Footer";
 import CalculatorResults from "./Components/Calculator/CalculatorResults";
 import MealPlanPage from "./MealPlan/MealPlanPage";
-import { createTheme } from '@material-ui/core/styles'
+import { createTheme } from "@material-ui/core/styles";
+import { getAutoHeightDuration } from "@mui/material/styles/createTransitions";
+import { Container } from "@material-ui/core";
+import Exercise from "./Components/Exercise/Exercise"
 
 const theme = createTheme({
   palette: {
@@ -58,19 +62,19 @@ function App() {
     usersActionCreator,
     dispatch
   );
+  const { clearUserMacros } = bindActionCreators(
+    userMetricsActionCreator,
+    dispatch
+  );
 
   useEffect(() => {
     return () => {
       if (auth.isAuthenticated !== true) {
         logoutUser();
+        clearUserMacros();
       }
     };
-  }, []);
-
-  // if (auth.isAuthenticated === false) {
-  //   clearLocalStorage(axiosInstance);
-  //   // logout()
-  // }
+  }, [auth.isAuthenticated]);
 
   //TODO: Change home component after finishing production
   const homePageNotAuth = <Route exact path="/" component={Home} />;
@@ -82,22 +86,25 @@ function App() {
         <Router>
           <div className="App">
             <Nav auth={auth} />
-            <Alerts />
-            <Separator />
-            <Switch>
-              {auth.isAuthenticated ? homePageAuth : homePageNotAuth}
-              <Route path="/login" component={Login} />
-              <Route path="/registration" component={Registration} />
-              <Route path="/recipe/:id" component={RecipeDetail} />
-              <Route path="/userspage" component={UsersPage} />
-              <Route
-                path="/inforegistration"
-                component={UserInfoRegistration}
-              />
-              <Route path="/calculator" component={UserDietCalculator} />
-              <Route path="/results" component={CalculatorResults} />
-              <Route path="/mealplan" component={MealPlanPage}/>
-            </Switch>
+            <Container maxWidth="xl">
+              <Alerts />
+              <Separator />
+              <Switch>
+                {auth.isAuthenticated ? homePageAuth : homePageNotAuth}
+                <Route path="/login" component={Login} />
+                <Route path="/registration" component={Registration} />
+                <Route path="/recipe/:id" component={RecipeDetail} />
+                <Route path="/userspage" component={UsersPage} />
+                <Route
+                  path="/inforegistration"
+                  component={UserInfoRegistration}
+                />
+                <Route path="/calculator" component={UserDietCalculator} />
+                <Route path="/results" component={CalculatorResults} />
+                <Route path="/mealplan" component={MealPlanPage} />
+                <Route path="/exercise" component={Exercise} />
+              </Switch>
+            </Container>
           </div>
         </Router>
       </AlertProvider>

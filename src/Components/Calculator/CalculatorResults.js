@@ -122,7 +122,7 @@ export default function CalculatorResults() {
       };
       getUserMacros(userMacroInfo);
     }
-  }, []);
+  }, [userCaloriesNeeded]);
 
   const userLoaded = (
     <Container component="main" maxWidth="xs">
