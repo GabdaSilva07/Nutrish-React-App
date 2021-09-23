@@ -1,4 +1,4 @@
-import { USER_METRICS_LOADED, USER_METRICS_FAIL, USER_MACROS } from "../Actions/Type";
+import { USER_METRICS_LOADED, USER_METRICS_FAIL, USER_MACROS, CLEAR_MACROS } from "../Actions/Type";
 
 const initialState = {
   loaded: false,
@@ -44,6 +44,26 @@ export default function userMetricsReducer(state = initialState, action) {
                 carbs: Number.parseInt(action.payload.userMacros.cGram),
                 fat: Number.parseInt(action.payload.userMacros.fGram),
                 protein: Number.parseInt(action.payload.userMacros.pGram),
+              },
+            };
+          case CLEAR_MACROS:
+            return {
+              ...state,
+              loaded: false,
+              gender: "",
+              age: null,
+              height: null,
+              weight: null,
+              activityLevel: "",
+              goal: "",
+              approach: "",
+              bmi: null,
+              calories: null,
+              idealWeight: null,
+              macros: {
+                carbs: "",
+                fat: "",
+                protein: "",
               },
             };
         default:
