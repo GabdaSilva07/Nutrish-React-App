@@ -28,28 +28,33 @@
 }
 .position-relative {
   display: flex;
+  max-height: 200px;
+  max-width: 200px;
 }
 .figcaption {
   position: absolute;
   font-size: medium;
+  object-fit: fill;
   text-decoration: none;
   color: white;
+  max-height: 200px;
+  max-width: 200px;
   font-weight: bold;
   bottom: 0px;
   right: 0px;
-  left:0px;
+  left: 0px;
   background-image: linear-gradient(
-    180deg,
+    120deg,
     transparent,
     rgba(139, 137, 137, 0.5),
     #292828d2
   );
 }
 
-.rows_posterLinks:hover {
+.poster:hover {
   transform: scale(1.1);
   transition: all 0.15s ease-in;
   opacity: 1;
   border-radius: 5px;
-  padding: 3px;
+  padding: 13px;
 }

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Component } from "react";
 import axiosExercise from "./axiosExercise";
 import PropTypes from "prop-types";
-import ImageListItem from "@mui/material/ImageListItem";
-import ImageListItemBar from "@mui/material/ImageListItemBar";
 import "../CSS/ExerciseRow.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function ExerciseRow({ exerciseSearch }) {
   const [posts, setPosts] = useState([]);
@@ -14,7 +13,7 @@ function ExerciseRow({ exerciseSearch }) {
       setPosts(request.data);
     }
 
-    if (typeof exerciseSearch !== "undefined") {
+    if (typeof exerciseSearch !== "undefined" || exerciseSearch !== "") {
       fetchExercises();
     }
   }, [exerciseSearch]);

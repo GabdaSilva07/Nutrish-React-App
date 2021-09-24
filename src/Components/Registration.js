@@ -93,6 +93,8 @@ function Registration() {
       favourite1,
       favourite2,
       favourite3,
+      favourite4,
+      favourite5,
     } = userInfo;
 
     const user = {
@@ -104,6 +106,8 @@ function Registration() {
       favourite1,
       favourite2,
       favourite3,
+      favourite4,
+      favourite5,
     };
 
     console.log(user);
@@ -113,7 +117,7 @@ function Registration() {
       //TODO Insert Alarm
     } else {
       createUser(user);
-      // history.push("/")
+      history.push("/login")
     }
   };
 
@@ -157,7 +161,7 @@ function Registration() {
             <Grid item xs={12}>
               <Autocomplete
                 multiple
-                id="tags-outlined"
+                id="Diet"
                 onChange={(event, value) => (userInfo.diet = value)}
                 options={diet}
                 getOptionLabel={(option) => option}
@@ -182,7 +186,7 @@ function Registration() {
             <Grid item xs={12}>
               <Autocomplete
                 multiple
-                id="tags-outlined"
+                id="Intolerance"
                 onChange={(event, value) => (userInfo.intolerance = value)}
                 options={intolerance}
                 getOptionLabel={(option) => option}
@@ -206,7 +210,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <Autocomplete
-                id="free-solo-demo"
+                id="favourite1"
                 freeSolo
                 options={meals}
                 onChange={(event, value) => (userInfo.favourite1 = value)}
@@ -230,7 +234,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <Autocomplete
-                id="free-solo-demo"
+                id="favourite2"
                 freeSolo
                 options={meals}
                 onChange={(event, value) => (userInfo.favourite2 = value)}
@@ -241,7 +245,7 @@ function Registration() {
                     variant="outlined"
                     required
                     fullWidth
-                    name="favourite1"
+                    name="favourite2"
                     label="Favourite Cuisine 2"
                     type="favourite2"
                     id="favourite2"
@@ -254,7 +258,7 @@ function Registration() {
             </Grid>
             <Grid item xs={12}>
               <Autocomplete
-                id="free-solo-demo"
+                id="favourite3"
                 freeSolo
                 options={meals}
                 onChange={(event, value) => (userInfo.favourite3 = value)}
@@ -265,13 +269,61 @@ function Registration() {
                     variant="outlined"
                     required
                     fullWidth
-                    name="favourite2"
+                    name="favourite3"
                     label="Favourite Cuisine 3"
                     type="favourite3"
                     id="favourite3"
                     autoComplete="favourite3"
                     onChange={onChange}
                     value={toString(userInfo.favourite3)}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Autocomplete
+                id="favourite4 "
+                freeSolo
+                options={meals}
+                onChange={(event, value) => (userInfo.favourite4 = value)}
+                getOptionLabel={(option) => option}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="favourite4"
+                    label="Favourite Cuisine 4"
+                    type="favourite4"
+                    id="favourite4"
+                    autoComplete="favourite4"
+                    onChange={onChange}
+                    value={toString(userInfo.favourite4)}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Autocomplete
+                id="favourite5"
+                freeSolo
+                options={meals}
+                onChange={(event, value) => (userInfo.favourite5 = value)}
+                getOptionLabel={(option) => option}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="favourite5"
+                    label="Favourite Cuisine 5"
+                    type="favourite5"
+                    id="favourite5"
+                    autoComplete="favourite5"
+                    onChange={onChange}
+                    value={toString(userInfo.favourite5)}
                   />
                 )}
               />

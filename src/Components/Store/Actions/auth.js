@@ -75,29 +75,3 @@ export const logout = () => (dispatch) => {
       
     });
 };
-
-// export const logout = () => (dispatch, getState) => {
-//   dispatch({ type: USER_LOADING });
-
-//   //!GET TOKEN
-//   const access_token = getState().auth.access_token;
-//   const refresh_token = getState().auth.refresh_token;
-
-//   if (access_token && refresh_token === true) {
-//     axiosInstance.defaults.headers["Authorization"] =
-//       "JWT " + localStorage.getItem("access_token");
-//   }
-
-//   axiosInstance
-//     .get("api/token/", axiosInstance.tokenConfig(getState))
-//     .then((response) => {
-//       dispatch({
-//         type: USER_LOADED,
-//         payload: response.data,
-//       });
-//     })
-//     .catch((err) => {
-//       // dispatch(returnError(err.response.data, err.response.status));
-//       dispatch({ type: AUTH_ERROR });
-//     });
-// };
