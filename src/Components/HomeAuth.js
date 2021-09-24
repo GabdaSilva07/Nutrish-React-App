@@ -13,6 +13,7 @@ import axios from "axios";
 
 function HomeAuth() {
   const user = useSelector((state) => state.UserReducer);
+  const auth = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
   const { getUsers, updateUser, createUser, logoutUser } = bindActionCreators(
     usersActionCreator,
@@ -44,7 +45,6 @@ function HomeAuth() {
     getUsers();
     return () => {};
   }, []);
-  // console.log(user);
 
   return (
     <div>
@@ -61,6 +61,16 @@ function HomeAuth() {
       />
       <Row
         title={user.favourite3}
+        diet={user.diet}
+        intolerance={user.intolerance}
+      />
+      <Row
+        title={user.favourite4}
+        diet={user.diet}
+        intolerance={user.intolerance}
+      />
+      <Row
+        title={user.favourite5}
         diet={user.diet}
         intolerance={user.intolerance}
       />

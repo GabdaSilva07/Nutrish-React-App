@@ -30,7 +30,7 @@ import { ThemeProvider } from "@material-ui/core";
 import UserDietCalculator from "./Components/Calculator/UserDietCalculator";
 import Footer from "./Components/Footer";
 import CalculatorResults from "./Components/Calculator/CalculatorResults";
-import MealPlanPage from "./MealPlan/MealPlanPage";
+import MealPlanPage from "./Components/MealPlan/MealPlanPage";
 import { createTheme } from "@material-ui/core/styles";
 import { getAutoHeightDuration } from "@mui/material/styles/createTransitions";
 import { Container } from "@material-ui/core";

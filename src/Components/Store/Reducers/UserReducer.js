@@ -8,6 +8,8 @@ const initialState = {
   favourite1: "",
   favourite2: "",
   favourite3: "",
+  favourite4: "",
+  favourite5: "",
   users: []
 };
 
@@ -23,6 +25,8 @@ export default function (state = initialState, action) {
         favourite1: action.payload.favourite1,
         favourite2: action.payload.favourite2,
         favourite3: action.payload.favourite3,
+        favourite4: action.payload.favourite4,
+        favourite5: action.payload.favourite5,
       };
     case UPDATE_USER:
       return {
@@ -43,6 +47,8 @@ export default function (state = initialState, action) {
       favourite1: "",
       favourite2: "",
       favourite3: "",
+      favourite4: "",
+      favourite5: "",
       users: [],
     };
     default:

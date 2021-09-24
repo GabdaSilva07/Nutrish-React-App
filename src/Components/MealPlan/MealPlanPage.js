@@ -10,10 +10,10 @@ import {
   CardContent,
 } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import { useStyles } from "../Components/Registration";
+import { useStyles } from "../Registration";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import axios from "../axios";
-import "../Components/CSS/MealPlan.css";
+import axios from "../../axios";
+import "../CSS/MealPlan.css";
 import { CardActionArea } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -116,22 +116,3 @@ function MealPlanPage() {
 
 export default MealPlanPage;
 
-// <Grid item spacing={2} align="center">
-//   <Paper
-//     item
-//     sx={{ margin: "auto", maxWidth: 400, flexGrow: 1 }}
-//     align="center"
-//   >
-//     <Typography variant="h4" gutterBottom align="center">
-//       Meal {index + 1}
-//     </Typography>
-//     <Typography>{meal.title}</Typography>
-// 		<Typography>{}</Typography>
-//     <img
-//       key={meal.id}
-//       className="image"
-//       src={`${base_url}${meal.id}-${image_size}.${meal.imageType}`}
-//       alt={meal.title}
-//     />
-//   </Paper>
-// </Grid>
