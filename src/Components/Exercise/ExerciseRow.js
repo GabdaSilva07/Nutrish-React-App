@@ -49,13 +49,3 @@ ExerciseRow.propTypes = {
 };
 
 export default ExerciseRow;
-
-// <ImageListItem key={item.img}>
-//   <img src={item.gifUrl} alt={item.name} loading="lazy" />
-//   <ImageListItemBar
-//     title={item.name.charAt(0).toUpperCase() + item.name.substring(1)}
-//     subtitle={
-//       item.target.charAt(0).toUpperCase() + item.target.substring(1)
-//     }
-//   />
-// </ImageListItem>

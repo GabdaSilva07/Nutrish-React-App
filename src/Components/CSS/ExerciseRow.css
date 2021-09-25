@@ -7,7 +7,7 @@
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  border-radius: 5px;
+  border-radius: 6px;
   max-height: 350px;
   object-fit: contain;
   position: relative;
@@ -47,15 +47,15 @@
 }
 
 .position-relative {
-
   max-height: 500px;
   max-width: 500px;
 }
 
 .position-relative:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
   transition: all 0.15s ease-in;
   opacity: 1;
   border-radius: 5px;
-  padding: 13px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
